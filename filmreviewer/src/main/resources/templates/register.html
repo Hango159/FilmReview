@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - FilmeReviewer</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Create Account</h2>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" id="username" th:field="*{username}" required placeholder="Username" />
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" required placeholder="adresa@exemplu.com" />
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" th:field="*{password}" required placeholder="Password" />
+            </div>
+            
+            <button type="submit">Register</button>
+        </form>
+        <div class="login-link">
+            Have an account? <a th:href="@{/login}">Login now</a>
+        </div>
+    </div>
+</body>
+</html>

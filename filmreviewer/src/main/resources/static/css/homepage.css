@@ -1,0 +1,135 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #0d6efd;
+    font-size: 1.8rem;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-logout {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #bb2d3b;
+}
+
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+}
+
+.film-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.film-card:hover {
+    transform: translateY(-5px);
+}
+
+.film-card h3 {
+    padding: 20px 20px 5px 20px;
+    margin: 0;
+    color: #212529;
+    font-size: 1.4rem;
+}
+
+.film-poster {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.film-info {
+    padding: 5px 20px 15px 20px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.reviews-section {
+    padding: 0 20px 20px 20px;
+    flex-grow: 1;
+}
+
+.review-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.review-item {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    border-left: 4px solid #0d6efd;
+}
+
+.btn-add-review {
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+    margin: 0 20px 20px 20px;
+}
+
+.btn-delete {
+    background-color: #ffc107;
+    color: #212529;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.btn-add-film {
+    display: block;
+    width: fit-content;
+    margin: 40px auto;
+    background-color: #198754;
+    color: white;
+    font-size: 1.1rem;
+}

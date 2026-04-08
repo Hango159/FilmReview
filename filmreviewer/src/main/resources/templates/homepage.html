@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filme Reviewer - Homepage</title>
+    <link rel="stylesheet" th:href="@{/css/homepage.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Filme Reviewer</h1>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-logout">Logout</button>
+        </form>
+    </div>
+
+    <ul class="film-grid">
+        <li class="film-card" th:each="film : ${films}">
+            <h3 th:text="${film.title}">Film Title</h3>
+
+            <!-- Poster Film -->
+            <img class="film-poster" th:src="${film.imageUrl != null && !film.imageUrl.isEmpty() ? film.imageUrl : 'https://via.placeholder.com/300x200'}" alt="Poster Film">
+
+            <div class="film-info">
+                <p th:text="${film.genre} + ' • ' + ${film.releaseYear}">Gen • An</p>
+            </div>
+
+            <div class="reviews-section">
+                <h4>Reviews</h4>
+                <ul class="review-list">
+                    <li class="review-item" th:each="rev : ${film.reviews}">
+                        <strong th:text="${rev.rating} + '/10'"></strong> - 
+                        <span th:text="${rev.commentTxt}">Comment</span>
+                        <br>
+                        <small th:text="${rev.user != null ? rev.user.username : 'Anonim'} + ' pe ' + ${rev.reviewDate}"></small>
+                        
+                        <!-- Ștergere Recenzie (Admin sau Proprietar) -->
+                        <form th:action="@{/deletereview/{id}(id=${rev.id})}" method="post" style="display:inline;"
+                              th:if="${#authentication.name == (rev.user != null ? rev.user.username : '') or #authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                            <button type="submit" class="btn btn-delete" onclick="return confirm('Ștergi recenzia?')">Delete Review</button>
+                        </form>
+                    </li>
+                    <li th:if="${#lists.isEmpty(film.reviews)}" class="review-item" style="color: #bbb; border: none;">No reviews yet.</li>
+                </ul>
+            </div>
+
+            <a th:href="@{/reviews(filmId=${film.id})}" class="btn btn-add-review">Add Review</a>
+
+            <!-- Control Admin -->
+            <div class="admin-controls" sec:authorize="hasRole('ROLE_ADMIN')" style="margin-top: 10px;">
+                <form th:action="@{/delete/{id}(id=${film.id})}" method="post">
+                    <button type="submit" class="btn btn-delete" style="width: 100%;" onclick="return confirm('Sigur ștergi filmul?')">Delete Film</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addfilm}" class="btn btn-add-film">+ Add New Film</a>
+
+</body>
+</html>

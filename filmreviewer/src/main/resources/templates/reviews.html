@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review - FilmeReviewer</title>
+    <link rel="stylesheet" th:href="@{/css/reviews.css}">
+</head>
+<body>
+    <div class="review-container">
+        <h1>Add a Review</h1>
+
+        <form th:action="@{/savereview}" th:object="${review}" method="post">
+            <div class="form-group">
+                <label for="commentTxt">Your Thoughts:</label>
+                <textarea th:field="*{commentTxt}" placeholder="Write your review here..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating (1-10):</label>
+                <input type="number" th:field="*{rating}" min="1" max="10" placeholder="Ex: 8" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reviewDate">Review Date:</label>
+                <input type="date" th:field="*{reviewDate}" required>
+            </div>
+
+            <input type="hidden" th:field="*{film.id}" />
+
+            <button type="submit">Save Review</button>
+        </form>
+
+        <a href="/films" class="back-link">← Back to Film List</a>
+    </div>
+</body>
+</html>

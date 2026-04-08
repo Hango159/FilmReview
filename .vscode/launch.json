@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FilmreviewerApplication<filmreviewer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "project.hh.filmreviewer.FilmreviewerApplication",
+            "projectName": "filmreviewer",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
